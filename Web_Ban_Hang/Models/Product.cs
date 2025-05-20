@@ -20,5 +20,6 @@ namespace Web_Ban_Hang.Models
         [ForeignKey("CategoryId")]
         public virtual Category Category { set; get; } //khai báo mối kết hợp 1 - nhiều
         public string ImageUrl { get; set; }
+
     }
 }
