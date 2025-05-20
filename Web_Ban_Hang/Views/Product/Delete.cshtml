@@ -1,0 +1,11 @@
+﻿@model Product
+<form asp-action="DeleteConfirmed" method="post">
+	<h2>Confirm to Delete Product</h2>
+	<hr />
+	<input asp-for="MaSP" type="hidden" />
+	<div class="alert alert-info">
+		Ban co muon xoa san pham @Model.Name nay khong ?
+	</div>
+	<button type="submit" class="btn btn-danger"> Xoa </button>
+	<a asp-action="Index" class="btn btn-secondary">Tro ve</a>
+</form>
