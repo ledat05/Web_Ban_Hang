@@ -13,6 +13,7 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th>Description</th>
             <th>Price</th>
             <th>Category</th>
             <th>Image</th>
@@ -24,6 +25,7 @@
         {
             <tr>
                 <td>@product.Name</td>
+                <td style="width:25%" >@product.Description</td>
                 <td>@product.Price</td>
                 <td>@product.Category.Name</td>
                 <td>
@@ -36,7 +38,7 @@
                     <a asp-action="Update" asp-route-id="@product.MaSP" class="btn btn-success">
                         <i class="bi bi-pencil-square"></i> Edit
                     </a>
-                    <a asp-action="Delete" asp-route-id="@product.MaSP" class="btn btn-danger">
+                    <a asp-action="Delete" asp-route-id="@product.MaSP" class="btn btn-secondary">
                         <i class="bi bi-trash"></i> Delete
                     </a>
                 </td>
