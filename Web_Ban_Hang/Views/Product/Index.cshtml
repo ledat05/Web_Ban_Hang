@@ -44,3 +44,26 @@
         }
     </tbody>
 </table>
+<div class="d-flex justify-content-center mt-4">
+    <nav>
+        <ul class="pagination">
+            <!-- Nút Đầu tiên -->
+            <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = 1 })">&laquo;</a>
+            </li>
+
+            <!-- Các trang -->
+            @for (int i = ViewBag.from; i <= ViewBag.to; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                </li>
+            }
+
+            <!-- Nút Cuối cùng -->
+            <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.TotalPages })">&raquo;</a>
+            </li>
+        </ul>
+    </nav>
+</div>

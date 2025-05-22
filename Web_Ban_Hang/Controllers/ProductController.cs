@@ -21,25 +21,29 @@ namespace Web_Ban_Hang.Controllers
             _db = db;
             _hosting = hosting;
         }
+
         //Hiển thị danh sách sản phẩm
-        public IActionResult Index(int page = -1)
+        public IActionResult Index(int page = 1)
         {
-            int pageSize = -7;
+            int pageSize = 4;
+            int offset = 3;
 
             var totalItems = _db.Products.Count();
             var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
-            var model = _db.Products
-                          .Skip((page - 1) * pageSize)  
-                          .Take(pageSize) 
-                          .ToList();
-            var model = new Product
-            {
+            var products = _db.Products
+                              .Include(x => x.Category)
+                              .OrderBy(p => p.CategoryId)
+                              .Skip((page - 1) * pageSize)
+                              .Take(pageSize)
+                              .ToList();
 
-            }
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.from = Math.Max(1, page - offset);
+            ViewBag.to = Math.Min(totalPages, page + offset);
 
-            var productList = _db.Products.Include(x => x.Category).ToList();
-            return View(productList);
+            return View(products);
         }
         //Hiển thị form thêm sản phẩm mới
         public IActionResult Add()
@@ -150,23 +154,26 @@ namespace Web_Ban_Hang.Controllers
         }
 
         //Hiển thị form xác nhận xóa sản phẩm
-        // GET: Product/Delete/5
         public IActionResult Delete(int id)
         {
             var product = _db.Products.Find(id);
-            if (product == null) return NotFound();
+            if (product == null)
+            {
+                return NotFound();
+            }
             return View(product);
         }
-
-        // POST: Product/Delete
+        //Xử lý xóa sản phẩm
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed(int id)
         {
             var product = _db.Products.Find(id);
-            if (product == null) return NotFound();
-
-            if (!string.IsNullOrEmpty(product.ImageUrl))
+            if (product == null)
+            {
+                return NotFound();
+            }
+            // xoá hình cũ của sản phẩm
+            if (!String.IsNullOrEmpty(product.ImageUrl))
             {
                 var oldFilePath = Path.Combine(_hosting.WebRootPath, product.ImageUrl);
                 if (System.IO.File.Exists(oldFilePath))
@@ -174,15 +181,12 @@ namespace Web_Ban_Hang.Controllers
                     System.IO.File.Delete(oldFilePath);
                 }
             }
-
+            // xóa sản phẩm khỏi CSDL
             _db.Products.Remove(product);
             _db.SaveChanges();
-            TempData["success"] = "Xóa thành công!";
+            TempData["success"] = "Xóa sản phẩm thành công";
+            //chuyển đến trang index
             return RedirectToAction("Index");
         }
-
-        //Xử lý phân trang 
-
     }
 }
-

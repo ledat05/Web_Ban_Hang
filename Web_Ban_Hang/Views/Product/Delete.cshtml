@@ -1,9 +1,11 @@
 ﻿@model Product
-
 <form asp-action="Delete" method="post">
-    @Html.AntiForgeryToken()
+    <h2>Confirm to Delete Product</h2>
+    <hr />
     <input asp-for="MaSP" type="hidden" />
-    <p>Bạn có chắc chắn muốn xóa sản phẩm <strong>@Model.Name</strong>?</p>
-    <butto  type="submit" class="btn btn-danger">Xóa</button>
-    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+    <div class="alert alert-info">
+        Do you want to delete @Model.Name?
+    </div>
+    <button type="submit" class="btn btn-danger"> Delete </button>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </form>
