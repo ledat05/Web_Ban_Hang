@@ -1,38 +1,97 @@
-﻿@model List<Product>
-@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<div class="container mt-4">
+    <div class="row">
+        <!-- Menu trái -->
+        <div class="col-md-3">
+            <ul class="list-group shadow-sm rounded">
+                <li class="list-group-item"><i class="bi bi-phone"></i> Điện thoại, Tablet</li>
+                <li class="list-group-item">Laptop</li>
+                <li class="list-group-item">Âm thanh, Mic thu âm</li>
+                <li class="list-group-item">Đồng hồ, Camera</li>
+                <li class="list-group-item">Đồ gia dụng</li>
+                <li class="list-group-item">Phụ kiện</li>
+                <li class="list-group-item">PC, Màn hình, Máy in</li>
+                <li class="list-group-item">Tivi</li>
+                <li class="list-group-item">Thu cũ đổi mới</li>
+                <li class="list-group-item">Hàng cũ</li>
+                <li class="list-group-item">Khuyến mãi</li>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+            </ul>
+        </div>
+        <!-- Slider phải -->
+        <div class="col-md-9">
+            <div id="imageCarousel" class="carousel slide carousel-fade mb-3" data-bs-ride="carousel" data-bs-interval="3000">
+                <div class="carousel-inner rounded shadow-sm">
+                    <div class="carousel-item active">
+                        <img src="~/img/iphone-16-pro-max-thu-cu-moi-home.jpg" class="d-block w-100" alt="Slide 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/img/poco-x7-moi-home.webp" class="d-block w-100" alt="Slide 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="~/img/s25-home-moi.webp" class="d-block w-100" alt="Slide 3">
+                    </div>
+                </div>
+            </div>
+            <!-- Sản phẩm nhỏ trượt ngang -->
+            <div class="d-flex justify-content-between text-center overflow-auto gap-2">
+                <div class="flex-shrink-0 p-2 bg-white border rounded">
+                    <strong>IPHONE 16 PRO MAX</strong><br>
+                    <small>Lên đời ngay</small>
+                </div>
+                <div class="flex-shrink-0 p-2 bg-white border rounded">
+                    <strong>GALAXY S25 ULTRA</strong><br>
+                    <small>Giá tốt chốt ngay</small>
+                </div>
+                <div class="flex-shrink-0 p-2 bg-white border rounded">
+                    <strong>POCO X7 PRO</strong><br>
+                    <small>Chỉ có tại CPS</small>
+                </div>
+                <div class="flex-shrink-0 p-2 bg-white border rounded">
+                    <strong>MACBOOK AIR M4</strong><br>
+                    <small>Lên đời nhận AirPods4</small>
+                </div>
+                <div class="flex-shrink-0 p-2 bg-white border rounded">
+                    <strong>ASUS ZENBOOK A14</strong><br>
+                    <small>Giá ưu đãi</small>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="row">
-    <partial name="ProductPartial" />
-</div>
-<div class="text-center">
-    <button id="btnLoadmore" class="btn btn-primary" >LoadMore</button>
-</div>
-@section Scripts{ 
-<script>
-    let currentPage = 2;
-    $("#btnLoadmore").click(function () {
-        loadPage(currentPage);
-        currentPage++;
-    });
-    let loadPage = (page) => {
-        $.ajax({
-            url: '/Home/LoadMore',
-            data: { page: page },
-            success: function (data) {
-                if (data.length > 0) {
-                    $('.products').append(data);
-                } else {
-                    $('#btnLoadmore').hide();
-                }
+
+    <div class="row products">
+        <partial name="ProductPartial" model="Model" />
+    </div>
+    <div class="text-center">
+            <button id="btnLoadmore" class="btn btn-primary">Load More</button>
+        </div>
+    </div>
+
+
+    @section Scripts {
+        <script>
+            let currentPage = 2;
+            $("#btnLoadmore").click(function () {
+                loadPage(currentPage);
+                currentPage++;
+            });
+
+            function loadPage(page) {
+                $.ajax({
+                    url: '/Home/Loadore',
+                    data: { page: page },
+                    type: "GET",
+                    success: function (data) {
+                        if (data.trim().length > 0) {
+                            $(".products").append(data);
+                        } else {
+                            $("#btnLoadmore").hide();
+                        }
+                    },
+                    error: function () {
+                        alert("Tải thêm thất bại.");
+                    }
+                });
             }
-        });
+        </script>
     }
-</script>
-}

@@ -23,15 +23,15 @@ namespace Web_Ban_Hang.Controllers
 
         public IActionResult Index(int page =1)
         {
-            var pageSize = 6;
+            var pageSize = 3 ;
             var products = _db.Products.ToList();
             return View(products.Skip((page - 1)*pageSize).Take(pageSize).ToList());
         }
         public IActionResult LoadMore(int page = 1)
         {
-            var pageSize = 6;
+            var pageSize = 3;
             var products = _db.Products.ToList();
-            return PartialView("ProductPartial",products.Skip((page - 1) * pageSize).Take(pageSize).ToList());
+            return PartialView("ProductPartial", products.Skip((page - 1) * pageSize).Take(pageSize).ToList());
         }
         public IActionResult Privacy()
         {
