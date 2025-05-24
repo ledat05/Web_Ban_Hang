@@ -1,0 +1,18 @@
+﻿@foreach (var Product in Model)
+
+{
+<div class="card mb-3 col-4 " >
+    <h3 class="card-header">@Product.Name</h3>
+    <div class="card-body">
+        <h5 class="card-title">@Product.Price</h5>
+    </div>
+    <img src="@Product.ImageUrl" />
+    <div class="card-body">
+        <a href="#" class="btn btn-success">Xem</a>
+        <a href="#" class="btn btn-secondary">Thêm Giỏ Hàng</a>
+    </div>
+    <div class="card-footer text-muted">
+        2 days ago
+    </div>
+</div>
+}

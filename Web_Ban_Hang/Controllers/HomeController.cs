@@ -12,17 +12,27 @@ namespace Web_Ban_Hang.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private ApplicationDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
         {
             _logger = logger;
+            _db= db;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page =1)
         {
-            return View();
+            var pageSize = 6;
+            var products = _db.Products.ToList();
+            return View(products.Skip((page - 1)*pageSize).Take(pageSize).ToList());
         }
-
+        public IActionResult LoadMore(int page = 1)
+        {
+            var pageSize = 6;
+            var products = _db.Products.ToList();
+            return PartialView("ProductPartial",products.Skip((page - 1) * pageSize).Take(pageSize).ToList());
+        }
         public IActionResult Privacy()
         {
             return View();
