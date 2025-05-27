@@ -1,0 +1,68 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Sign in";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <form method="post" class="p-4 border rounded shadow bg-light" style="width: 550px; height:550px">
+        <h3 class="text-center mb-4">Sign in</h3>
+
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+        <!-- Email -->
+        <div class="mb-4">
+            <label asp-for="Input.Email" class="form-label"></label>
+            <input asp-for="Input.Email" class="form-control" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-4">
+            <label asp-for="Input.Password" class="form-label"></label>
+            <input asp-for="Input.Password" type="password" class="form-control" />
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+
+        <!-- Remember me và Quên mật khẩu -->
+        <div class="row mb-4">
+            <div class="col d-flex align-items-center">
+                <input asp-for="Input.RememberMe" class="form-check-input" id="RememberMe" />
+                <label asp-for="Input.RememberMe" class="form-check-label ms-2" for="RememberMe"></label>
+            </div>
+            <div class="col text-end">
+                <a asp-page="./ForgotPassword" class="text-decoration-none">Quên mật khẩu?</a>
+            </div>
+        </div>
+
+        <!-- Nút đăng nhập -->
+        <div class="d-flex justify-content-center mb-4">
+            <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+        </div>
+
+        <!-- Thông báo lỗi -->
+        <div class="text-danger text-center">
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <p>@Model.ErrorMessage</p>
+            }
+        </div>
+
+        <!-- Mạng xã hội -->
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a href="https://www.facebook.com/" target="_blank" class="btn btn-link btn-floating">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://accounts.google.com/" target="_blank" class="btn btn-link btn-floating">
+                <i class="fab fa-google"></i>
+            </a>
+            <a href="https://twitter.com/" target="_blank" class="btn btn-link btn-floating">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

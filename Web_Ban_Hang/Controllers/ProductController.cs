@@ -163,6 +163,7 @@ namespace Web_Ban_Hang.Controllers
             }
             return View(product);
         }
+  
         //Xử lý xóa sản phẩm
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)

@@ -63,7 +63,7 @@ body {
   margin-bottom: 60px;
 }
 .footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
@@ -72,3 +72,19 @@ body {
 #btnLoadmore{
     margin-top: 20px;
 }
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Hoặc chiều cao mong muốn */
+    object-fit: cover;
+    object-position: center;
+}
+.product-image {
+    width: 100%;
+    height: 100px; /* tăng chiều cao cho khung ảnh */
+    object-fit: contain;
+    object-position: center;
+    background-color: #fff; /* hoặc màu nhẹ để ảnh rõ ràng hơn */
+    padding: 10px; /* giúp ảnh không bị đụng biên */
+}
+
+
