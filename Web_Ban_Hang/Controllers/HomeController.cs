@@ -48,6 +48,15 @@ namespace Web_Ban_Hang.Controllers
             }
             return View(product);
         }
+        public IActionResult AddToCart (int id)
+        {
+            var product = _db.Products.FirstOrDefault(p => p.MaSP == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            return View(product);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

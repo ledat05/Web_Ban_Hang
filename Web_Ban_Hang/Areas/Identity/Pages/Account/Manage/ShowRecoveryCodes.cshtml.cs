@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using Web_Ban_Hang.Models;
 
 namespace Web_Ban_Hang.Areas.Identity.Pages.Account.Manage
 {

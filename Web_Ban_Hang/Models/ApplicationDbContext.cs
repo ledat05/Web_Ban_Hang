@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Web_Ban_Hang.Models
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -34,6 +34,7 @@ namespace Web_Ban_Hang.Models
             new Product { MaSP = 11, Name = "Ipad Gen 10", Price = 750, CategoryId = 2 },
             new Product { MaSP = 12, Name = "Ipad Pro 11", Price = 1250, CategoryId = 2 });
         }
+
     }
 }
 
