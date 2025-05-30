@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,6 +13,7 @@ using Web_Ban_Hang.Models;
 
 namespace Web_Ban_Hang.Controllers
 {
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -163,7 +165,7 @@ namespace Web_Ban_Hang.Controllers
             }
             return View(product);
         }
-  
+
         //Xử lý xóa sản phẩm
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirmed(int id)

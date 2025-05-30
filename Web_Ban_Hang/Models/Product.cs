@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Web_Ban_Hang.Models
 {
-    public class Products
+    public class Product
     {
         [Key]
         public int MaSP { get; set; }
