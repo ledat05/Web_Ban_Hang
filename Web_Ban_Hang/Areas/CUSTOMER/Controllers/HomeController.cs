@@ -7,8 +7,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Web_Ban_Hang.Models;
 
-namespace Web_Ban_Hang.Controllers
+namespace Web_Ban_Hang.Areas.CUSTOMER.Controllers
 {
+    [Area("CUSTOMER")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

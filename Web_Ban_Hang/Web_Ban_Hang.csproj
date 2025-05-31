@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\ADMIN\Data\" />
+    <Folder Include="Areas\ADMIN\Models\" />
+    <Folder Include="Areas\CUSTOMER\Data\" />
+    <Folder Include="Areas\CUSTOMER\Models\" />
     <Folder Include="wwwroot\images\products\" />
   </ItemGroup>
 
