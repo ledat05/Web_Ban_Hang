@@ -1,0 +1,39 @@
+﻿@model Product
+
+<div class="container mt-4">
+    <h1 class="mb-4">@Model.Name</h1>
+    <hr />
+
+    <div class="row">
+        <!-- Hiển thị ảnh sản phẩm -->
+        <div class="col-md-5 mb-3">
+            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+            {
+                <img src="/@Model.ImageUrl" alt="Ảnh sản phẩm" class="img-fluid rounded shadow" style="max-height: 400px;" />
+            }
+        </div>
+
+        <!-- Hiển thị thông tin sản phẩm -->
+        <div class="col-md-7">
+            <div class="mb-4">
+                <h5 class="form-label">Thông tin sản phẩm</h5>
+                <div class="border rounded p-3 bg-light" style="min-height: 150px; white-space: pre-line;">
+                    @Model.Description
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Giá</label>
+                <p class="fs-4 text-danger">@Model.Price.ToString("N0") đ</p>
+            </div>
+
+            <div class="d-flex gap-2">
+                <form asp-action="AddToCart" method="post">
+                    <input type="hidden" name="id" value="@Model.MaSP" />
+                    <button type="submit" class="btn btn-success btn-lg">Mua ngay</button>
+                </form>
+                <a asp-action="Index" class="btn btn-secondary btn-lg">Trở về</a>
+            </div>
+        </div>
+    </div>
+</div>

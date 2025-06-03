@@ -1,0 +1,69 @@
+﻿@model List<Product>
+<div class="row mb-4">
+    <div class="col-md-6">
+        <h2>LIST PRODUCT</h2>
+    </div>
+    <div class="col-md-6 text-end" >
+        <a asp-action="Add" class="btn btn-primary">
+           <i class="bi bi-plus-circle-fill"></i>Add New
+        </a>
+    </div>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Image</th>
+            <th>Action </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.Category.Name</td>
+                <td>
+                    @if (product.ImageUrl != null)
+                    {
+                        <img src="@product.ImageUrl" style="width:50px" />
+                    }
+                </td>
+                <td>
+                    <a asp-action="Update" asp-route-id="@product.MaSP" class="btn btn-success">
+                        <i class="bi bi-pencil-square"></i> Edit
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@product.MaSP" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="d-flex justify-content-center mt-4">
+    <nav>
+        <ul class="pagination">
+            <!-- Nút Đầu tiên -->
+            <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = 1 })">&laquo;</a>
+            </li>
+
+            <!-- Các trang -->
+            @for (int i = ViewBag.from; i <= ViewBag.to; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                </li>
+            }
+
+            <!-- Nút Cuối cùng -->
+            <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.TotalPages })">&raquo;</a>
+            </li>
+        </ul>
+    </nav>
+</div>
