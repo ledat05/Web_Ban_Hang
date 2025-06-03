@@ -35,7 +35,7 @@
                 services.AddRazorPages();
                 services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
                 services.AddScoped<IEmailSender,EmailSender>();
-                services.ConfigureApplicationCookie(options =>
+            services.ConfigureApplicationCookie(options =>
                 {
                     options.LoginPath = "/Identity/Account/Login";
                     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
@@ -63,8 +63,7 @@
                 app.UseSession();
                 app.UseAuthentication();
                 app.UseAuthorization();
-
-                app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllerRoute(
                           name: "areas",
