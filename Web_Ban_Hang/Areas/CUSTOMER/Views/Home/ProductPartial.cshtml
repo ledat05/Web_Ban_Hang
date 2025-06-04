@@ -3,18 +3,32 @@
     <div class="col-4 mb-3">
         <div class="card h-100 shadow-sm">
             <h3 class="card-header">@product.Name</h3>
+
             <div class="card-body">
                 <h5 class="card-title">@product.Price.ToString("N0") đ</h5>
             </div>
-                <img src="@product.ImageUrl" class="product-image" alt="@product.Name" />
-            <div class="card-body">
-                <a asp-action="Information" asp-route-id="@product.MaSP" class="btn btn-success">Xem</a>
-                <a href="#" class="btn btn-secondary">Thêm Giỏ Hàng</a>
-            </div>
-            <div class="card-footer text-muted">
-                2 ngày trước
-            </div>
-        </div>
-    </div>
 
+            <img src="@product.ImageUrl" class="product-image" alt="@product.Name" />
+
+            <div class="card-body">
+                <div class="d-flex gap-2">
+                    <a asp-action="Information"
+                       asp-route-id="@product.MaSP"
+                       class="btn btn-success w-50 text-center">Xem</a>
+
+                    <a asp-action="AddToCart"
+                       asp-controller="Cart"
+                       asp-area="CUSTOMER"
+                       asp-route-productId="@product.MaSP"
+                       class="btn btn-secondary w-50 text-center">
+                        Thêm Giỏ Hàng
+                    </a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 ngày trước
+                </div>
+            </div>
+
+            </div>
+    </div>
 }
