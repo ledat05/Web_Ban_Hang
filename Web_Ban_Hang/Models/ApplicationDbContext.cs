@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Web_Ban_Hang.Areas.CUSTOMER.Models;
 
 namespace Web_Ban_Hang.Models
 {
@@ -11,6 +12,9 @@ namespace Web_Ban_Hang.Models
         }
         public DbSet<Category> Categories { set; get; }
         public DbSet<Product> Products { set; get; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

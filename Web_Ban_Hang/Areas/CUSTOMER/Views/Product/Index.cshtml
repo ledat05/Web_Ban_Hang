@@ -27,14 +27,20 @@
                 {
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
-                    <img src="/@product.ImageUrl" class="product-image" alt="@product.Name" />
-                                <div class="card-body">
+                            <img src="/@product.ImageUrl" class="product-image" alt="@product.Name" />
+                            <div class="card-body">
                                 <h5 class="card-title">@product.Name</h5>
                                 <p class="card-text text-danger">@product.Price.ToString("N0") đ</p>
                             </div>
-                            <div class="card-body d-flex justify-content-between">
-                                <a asp-action="Information" asp-route-id="@product.MaSP" class="btn btn-success">Xem</a>
-                                <a href="#" class="btn btn-secondary">Thêm Giỏ Hàng</a>
+                            <div class="d-flex gap-2 text-md-center"  >
+                                <a asp-action="Information"asp-controller="Home" asp-route-id="@product.MaSP" class="btn btn-success">Xem</a>
+                                <a asp-action="AddToCart"
+                                   asp-controller="Cart"
+                                   asp-area="CUSTOMER"
+                                   asp-route-productId="@product.MaSP"
+                                   class="btn btn-secondary w-50 text-center">
+                                    Thêm Giỏ Hàng
+                                </a>
                             </div>
                             <div class="card-footer text-muted text-end">
                                 2 ngày trước

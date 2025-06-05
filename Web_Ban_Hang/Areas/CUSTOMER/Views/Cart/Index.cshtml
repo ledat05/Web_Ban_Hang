@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
                                         <div class="">
-                                            <input type="number" name="qty" value="@item.Quantity" class="form-control" />
+                                            <input type="number" name="qty" value="@item.Quantity" class="form-control" min="1" />
                                         </div>
                                         <div class="">
                                             <text class="h6">@string.Format("${0:#,##0}", item.Product.Price)</text> <br />
@@ -48,7 +48,7 @@
             <!-- summary -->
             <div class="col-lg-3">
                 <div class="card shadow-0 border">
-                    <div class="card-body">
+                    <div class="card-body" style="">
                         <div class="d-flex justify-content-between">
                             <p class="mb-2">Total price:</p>
                             <p class="mb-2">@string.Format("${0:#,##0}", Model.Total)</p>
@@ -67,7 +67,7 @@
                             <p class="mb-2 fw-bold">@string.Format("${0:#,##0}", Model.Total)</p>
                         </div>
                         <div class="mt-3">
-                            <a href="#" class="btn btn-success w-100 shadow-0 mb-2">Make Purchase</a>
+                            <a asp-action="Index" asp-controller="Order" asp-area="CUSTOMER" class="btn btn-success w-100 shadow-0 mb-2">Make Purchase</a>
                             <a href="/CUSTOMER" class="btn btn-light w-100 border mt-2">Back to shop</a>
                         </div>
                     </div>
