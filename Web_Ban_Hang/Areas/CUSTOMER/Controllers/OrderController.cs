@@ -70,5 +70,22 @@ namespace Web_Ban_Hang.Areas.CUSTOMER.Controllers
             ViewBag.CART = cart;
             return View("Index", order);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult BuyProduct(int productId, int quantity = 1)
+        {
+            var product = _db.Products.FirstOrDefault(p => p.MaSP == productId);
+            if (product == null)
+                return NotFound();
+
+            Cart cart = HttpContext.Session.GetJson<Cart>("CART") ?? new Cart();
+            cart.Add(product, quantity);
+
+            HttpContext.Session.SetJson("CART", cart);
+
+            // Sau khi thêm vào giỏ hàng, chuyển đến trang đặt hàng
+            return RedirectToAction("Index", "Order", new { area = "CUSTOMER" });
+        }
+
     }
 }

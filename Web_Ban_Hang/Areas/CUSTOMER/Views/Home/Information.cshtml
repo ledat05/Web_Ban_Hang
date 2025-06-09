@@ -28,10 +28,10 @@
             </div>
 
             <div class="d-flex gap-2">
-                <form asp-action="AddToCart" asp-controller="Cart" asp-area="CUSTOMER" method="post">
+                <form asp-action="BuyProduct" asp-controller="Order" asp-area="CUSTOMER" method="post">
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="productId" value="@Model.MaSP" />
-                    <button type="submit" class="btn btn-success">Thêm Giỏ Hàng</button>
+                    <button type="submit" class="btn btn-success">Mua</button>
                     <a asp-action="Index" class="btn btn-secondary">Trở về</a>
                 </form>
             </div>

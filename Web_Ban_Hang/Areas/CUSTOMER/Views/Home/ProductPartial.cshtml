@@ -15,14 +15,8 @@
                     <a asp-action="Information"
                        asp-route-id="@product.MaSP"
                        class="btn btn-success w-50 text-center">Xem</a>
-
-                    <a asp-action="AddToCart"
-                       asp-controller="Cart"
-                       asp-area="CUSTOMER"
-                       asp-route-productId="@product.MaSP"
-                       class="btn btn-secondary w-50 text-center">
-                        Thêm Giỏ Hàng
-                    </a>
+                    <a class="addtocart card-link btn btn-secondary w-50 text-center" data-productId="@product.MaSP" asp-action="AddToCart" asp-controller="Cart"
+                       asp-route-productId="@product.MaSP"> Add to cart </a>
                 </div>
                 <div class="card-footer text-muted">
                     2 ngày trước

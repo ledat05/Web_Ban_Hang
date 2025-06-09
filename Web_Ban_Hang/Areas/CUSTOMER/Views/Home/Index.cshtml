@@ -1,20 +1,20 @@
 ﻿<div class="container mt-4">
     <div class="row">
-        <!-- Menu trái -->
+     
         <div class="col-md-3">
             <ul class="list-group shadow-sm rounded">
-                <li class="list-group-item"><i class="bi bi-phone"></i> Điện thoại, Tablet</li>
-                <li class="list-group-item">Laptop</li>
-                <li class="list-group-item">Âm thanh, Mic thu âm</li>
-                <li class="list-group-item">Đồng hồ, Camera</li>
-                <li class="list-group-item">Đồ gia dụng</li>
-                <li class="list-group-item">Phụ kiện</li>
-                <li class="list-group-item">PC, Màn hình, Máy in</li>
-                <li class="list-group-item">Tivi</li>
-                <li class="list-group-item">Thu cũ đổi mới</li>
-                <li class="list-group-item">Hàng cũ</li>
-                <li class="list-group-item">Khuyến mãi</li>
-                 
+                @foreach (var c in (List<Category>)ViewBag.DSLOAI)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <a asp-area="CUSTOMER"
+                           asp-controller="Product"
+                           asp-action="FilterByCategory"
+                           asp-route-categoryId="@c.Id"
+                           class="text-decoration-none text-dark">
+                            @c.Name
+                        </a>
+                    </li>
+                }
             </ul>
         </div>
         <!-- Slider phải -->

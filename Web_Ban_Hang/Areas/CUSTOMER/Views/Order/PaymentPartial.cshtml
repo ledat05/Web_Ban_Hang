@@ -1,0 +1,29 @@
+﻿@using Web_Ban_Hang.Areas.CUSTOMER.Models
+@model Order
+<div class="col-6 mb-3">
+    <p class="mb-1 fw-bold">Hình thức thanh toán</p>
+
+    <div class="form-check">
+        <input class="form-check-input"
+               type="radio"
+               asp-for="PaymentMethod"
+               value="COD"
+               id="paymentCOD" />
+        <label class="form-check-label" for="paymentCOD">
+            Thanh toán khi nhận hàng
+        </label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input"
+               type="radio"
+               asp-for="PaymentMethod"
+               value="BankTransfer"
+               id="paymentBank" />
+        <label class="form-check-label" for="paymentBank" >
+            Chuyển khoản(Hiện tại chưa hỗ trợ)
+        </label>
+    </div>
+
+    <span class="text-danger" asp-validation-for="PaymentMethod"></span>
+</div>

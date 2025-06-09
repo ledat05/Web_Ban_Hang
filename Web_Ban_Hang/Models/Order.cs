@@ -19,5 +19,8 @@ namespace Web_Ban_Hang.Areas.CUSTOMER.Models
         public string Phone { get; set; }
         public double Total { set; get; }
         public string State { set; get; }
+        [Required(ErrorMessage = "Vui lòng nhập chọn phương thức thanh toán")]
+        public string PaymentMethod { set; get; }
+
     }
 }
