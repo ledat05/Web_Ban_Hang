@@ -24,7 +24,7 @@
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LuxTech</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
+                        aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -33,22 +33,22 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="CUSTOMER" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="CUSTOMER" asp-controller="Product" asp-action="Index">Product</a>
-                        </li>
-                            @if (User.IsInRole(ShareData.Role_Admin))
-                            {
+                        @*<li class="nav-item">
+                                <a class="nav-link" type="hidden" asp-area="CUSTOMER" asp-controller="Product" asp-action="Index"  >Product</a>
+                            </li>*@
+                        @if (User.IsInRole(ShareData.Role_Admin))
+                        {
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="ADMIN" asp-controller="Product" asp-action="Index">Product Manager</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="ADMIN" asp-controller="Category" asp-action="Index">Caterogies</a>
                             </li>
-                            }
+                        }
                     </ul>
                     <div class="d-flex">
                         <partial name="_LoginPartial" />
-            </div>
+                    </div>
                     <form asp-action="Index" asp-controller="Cart" class="d-flex">
                         <button class="btn btn-outline-light" type="submit">
                             <i class="bi-cart-fill me-1"></i>
@@ -76,7 +76,9 @@
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
